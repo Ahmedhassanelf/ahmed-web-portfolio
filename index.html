@@ -3,109 +3,98 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ahmed Hassan Elfekiry — Security Research Dossier</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<title>Ahmed Hassan Elfekiry — Security Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#0b0b0a; --panel:#141412; --panel2:#1a1917; --line:rgba(240,162,2,0.14);
-  --amber:#f0a202; --amber-dim:#b97c05; --red:#e5484d; --red-dim:#7a2a2c;
-  --text:#ece7dc; --text2:#a69c87; --text3:#6b6454;
+  --bg:#07070a; --panel:#0f0f13; --panel2:#15141a; --line:rgba(229,54,54,0.16);
+  --red:#e53636; --red-dim:#7a2020; --red-glow:rgba(229,54,54,0.18);
+  --text:#efece6; --text2:#9b958c; --text3:#625c54;
   --mono:'IBM Plex Mono',monospace; --head:'Space Grotesk',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:var(--head);line-height:1.6}
 a{color:inherit}
-::selection{background:var(--amber);color:#0b0b0a}
+::selection{background:var(--red);color:#fff}
 .wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
 
-/* paper-grain texture */
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.012) 0px,rgba(255,255,255,0.012) 1px,transparent 1px,transparent 3px);
-}
-
-header{position:sticky;top:0;z-index:50;background:rgba(11,11,10,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:50;background:rgba(7,7,10,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem}
-.brand{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;color:var(--amber)}
+.brand{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;color:var(--red)}
 .brand b{color:var(--text)}
 nav{display:flex;gap:1.6rem}
 nav a{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-decoration:none;color:var(--text2)}
-nav a:hover{color:var(--amber)}
+nav a:hover{color:var(--red)}
 
-/* HERO: file-label strip */
-.hero{padding:4.5rem 0 3rem;position:relative;z-index:1}
-.file-tab{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--bg);
-  background:var(--amber);padding:.3rem .7rem;margin-bottom:1.6rem}
-h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:700;letter-spacing:-.01em;max-width:16ch}
-.role{font-family:var(--mono);color:var(--amber-dim);font-size:.95rem;margin-top:.9rem}
-.hero p{color:var(--text2);max-width:52ch;margin-top:1.2rem;font-size:.98rem}
-.hero-meta{display:flex;gap:2.2rem;margin-top:2.2rem;flex-wrap:wrap}
+.hero{padding:5rem 0 3.5rem;position:relative}
+.hero::before{content:'';position:absolute;top:-2rem;right:-8rem;width:420px;height:420px;
+  background:radial-gradient(circle,var(--red-glow) 0%,transparent 70%);pointer-events:none}
+.file-tab{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:#fff;
+  background:var(--red);padding:.3rem .75rem;margin-bottom:1.7rem}
+h1{font-size:clamp(2.3rem,5.5vw,3.8rem);font-weight:700;letter-spacing:-.01em}
+.role{font-family:var(--mono);color:var(--red);font-size:1rem;margin-top:1rem;letter-spacing:.02em}
+.hero p{color:var(--text2);max-width:56ch;margin-top:1.3rem;font-size:1rem}
+.hero-meta{display:flex;gap:2.4rem;margin-top:2.4rem;flex-wrap:wrap}
 .hero-meta div{font-family:var(--mono)}
-.hero-meta .n{color:var(--amber);font-size:1.3rem;font-weight:600;display:block}
+.hero-meta .n{color:var(--red);font-size:1.5rem;font-weight:600;display:block}
 .hero-meta .l{color:var(--text3);font-size:.68rem;letter-spacing:.1em}
 
 .sep{height:1px;background:var(--line)}
 
-/* SECTION shell */
-section{padding:3.4rem 0;position:relative;z-index:1}
-.s-head{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.8rem}
-.s-num{font-family:var(--mono);color:var(--amber-dim);font-size:.78rem}
-.s-title{font-size:1.5rem;font-weight:600}
-.s-sub{color:var(--text3);font-family:var(--mono);font-size:.78rem;margin-top:.3rem;max-width:60ch}
+section{padding:3.6rem 0;position:relative}
+.s-head{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.6rem}
+.s-num{font-family:var(--mono);color:var(--red-dim);font-size:.78rem}
+.s-title{font-size:1.6rem;font-weight:700}
+.s-sub{color:var(--text3);font-family:var(--mono);font-size:.78rem;margin-bottom:1.8rem;max-width:62ch}
 
-/* FEATURED CVE CARD */
-.cve-featured{display:block;text-decoration:none;background:linear-gradient(135deg,var(--panel2),var(--panel));
-  border:1px solid var(--amber-dim);position:relative;padding:1.8rem 2rem;margin-bottom:1.6rem;transition:border-color .2s}
-.cve-featured:hover{border-color:var(--amber)}
-.cve-stamp{position:absolute;top:1.5rem;right:1.8rem;border:2px solid var(--amber);color:var(--amber);
-  font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;padding:.2rem .6rem;transform:rotate(4deg)}
-.cve-id{font-family:var(--mono);color:var(--amber);font-size:.85rem;letter-spacing:.06em;margin-bottom:.5rem}
-.cve-featured h3{font-size:1.5rem;margin-bottom:.6rem}
-.cve-featured p{color:var(--text2);max-width:58ch;font-size:.92rem;margin-bottom:1rem}
+.cve-featured{display:block;text-decoration:none;background:linear-gradient(140deg,var(--panel2),var(--panel));
+  border:1px solid var(--red-dim);position:relative;padding:2rem 2.2rem;margin-bottom:1.6rem;transition:border-color .2s,box-shadow .2s}
+.cve-featured:hover{border-color:var(--red);box-shadow:0 0 30px -10px var(--red-glow)}
+.cve-stamp{position:absolute;top:1.6rem;right:2rem;border:2px solid var(--red);color:var(--red);
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;padding:.2rem .6rem;transform:rotate(3deg)}
+.cve-id{font-family:var(--mono);color:var(--red);font-size:.88rem;letter-spacing:.06em;margin-bottom:.6rem}
+.cve-featured h3{font-size:1.55rem;margin-bottom:.7rem;max-width:30ch}
+.cve-featured p{color:var(--text2);max-width:58ch;font-size:.93rem;margin-bottom:1.1rem}
 .cve-row{display:flex;gap:1.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--text3)}
 .cve-row b{color:var(--text)}
 
-/* CASE FILE CARDS */
+.count-strip{display:flex;align-items:center;gap:1rem;background:var(--panel);border:1px solid var(--line);
+  padding:1rem 1.4rem;margin-bottom:1.6rem;font-family:var(--mono);font-size:.82rem;color:var(--text2)}
+.count-strip b{color:var(--red);font-size:1.1rem}
+
 .case{display:flex;text-decoration:none;background:var(--panel);border:1px solid var(--line);margin-bottom:.9rem;transition:border-color .2s,transform .2s}
-.case:hover{border-color:var(--amber-dim);transform:translateX(3px)}
-.case-tab{flex:0 0 7px}
-.case-tab.critical{background:var(--red)}
-.case-tab.high{background:var(--amber)}
+.case:hover{border-color:var(--red);transform:translateX(3px)}
+.case-tab{flex:0 0 7px;background:var(--red)}
 .case-body{padding:1.3rem 1.6rem;flex:1}
 .case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-.case-sev{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;padding:.15rem .5rem;flex-shrink:0;white-space:nowrap;margin-top:.15rem}
-.case-sev.critical{color:var(--red);border:1px solid var(--red-dim)}
-.case-sev.high{color:var(--amber);border:1px solid var(--amber-dim)}
-.case-title{font-size:1.08rem;font-weight:600}
+.case-sev{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;padding:.15rem .55rem;flex-shrink:0;white-space:nowrap;margin-top:.15rem;color:var(--red);border:1px solid var(--red-dim)}
+.case-title{font-size:1.1rem;font-weight:600}
 .case-target{font-family:var(--mono);color:var(--text3);font-size:.7rem;margin-top:.3rem;letter-spacing:.03em}
-.case-desc{color:var(--text2);font-size:.86rem;margin-top:.7rem;max-width:62ch}
+.case-desc{color:var(--text2);font-size:.87rem;margin-top:.7rem;max-width:62ch}
 .case-arrow{font-family:var(--mono);color:var(--text3);font-size:.8rem;margin-top:.7rem;display:inline-block}
-.case:hover .case-arrow{color:var(--amber)}
+.case:hover .case-arrow{color:var(--red)}
 
-/* ABOUT */
 .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem}
-.about-grid p{color:var(--text2);margin-bottom:.9rem;font-size:.92rem}
-.stat{border-left:2px solid var(--amber-dim);padding-left:.9rem;margin-bottom:1rem}
-.stat b{display:block;font-size:1.15rem;color:var(--amber)}
+.about-grid p{color:var(--text2);margin-bottom:.9rem;font-size:.93rem}
+.stat{border-left:2px solid var(--red-dim);padding-left:.9rem;margin-bottom:1rem}
+.stat b{display:block;font-size:1.15rem;color:var(--red)}
 .stat span{font-family:var(--mono);font-size:.68rem;color:var(--text3);letter-spacing:.08em}
 
-/* SOCIAL / SKILLS / CERTS grids */
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem}
 .chip-card{background:var(--panel);border:1px solid var(--line);padding:1rem 1.2rem;text-decoration:none;display:flex;flex-direction:column;gap:.15rem}
-.chip-card:hover{border-color:var(--amber-dim)}
+.chip-card:hover{border-color:var(--red-dim)}
 .chip-card b{font-size:.95rem}
 .chip-card span{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 
-.skill-block{margin-bottom:1.3rem}
-.skill-block h4{font-family:var(--mono);font-size:.72rem;color:var(--amber-dim);letter-spacing:.1em;margin-bottom:.6rem}
+.skill-block{margin-bottom:1.5rem}
+.skill-block h4{font-family:var(--mono);font-size:.72rem;color:var(--red);letter-spacing:.1em;margin-bottom:.7rem}
 .pills{display:flex;flex-wrap:wrap;gap:.4rem}
-.pill{font-family:var(--mono);font-size:.68rem;color:var(--text2);border:1px solid var(--line);padding:.25rem .6rem}
+.pill{font-family:var(--mono);font-size:.68rem;color:var(--text2);border:1px solid var(--line);padding:.28rem .65rem}
 
-.cert{background:var(--panel);border:1px solid var(--line);padding:1rem 1.2rem}
-.cert b{display:block;font-size:.95rem}
+.certs-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.7rem}
+.cert{background:var(--panel);border:1px solid var(--line);padding:.95rem 1.2rem}
+.cert b{display:block;font-size:.93rem}
 .cert span{font-family:var(--mono);font-size:.68rem;color:var(--text3)}
-.cert .st{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;margin-top:.4rem;display:inline-block;padding:.1rem .4rem}
-.st.done{color:var(--amber);border:1px solid var(--amber-dim)}
-.st.ip{color:var(--text2);border:1px solid var(--line)}
 
 footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68rem;color:var(--text3)}
 
@@ -120,9 +109,9 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
 
 <header>
   <div class="wrap">
-    <div class="brand">AH<b>F</b> // SEC-RESEARCH</div>
+    <div class="brand">AH<b>F</b> // SECURITY RESEARCHER</div>
     <nav>
-      <a href="#research">Vulns</a>
+      <a href="#research">Research</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#certs">Certs</a>
@@ -133,14 +122,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
 
 <div class="wrap">
   <div class="hero">
-    <span class="file-tab">CASE FILE · OPEN</span>
+    <span class="file-tab">SECURITY RESEARCH DOSSIER</span>
     <h1>Ahmed Hassan Elfekiry</h1>
-    <div class="role">Penetration Tester · Security Researcher · CVE Author</div>
-    <p>Offensive security professional focused on authorization-bypass and auth-logic vulnerabilities across AI infrastructure, databases, and cloud services. Published CVE author. Pursuing OSCP and CPTS.</p>
+    <div class="role">Security Researcher · Penetration Tester · CVE Author</div>
+    <p>Offensive security researcher focused on authorization-bypass and auth-logic vulnerabilities across AI infrastructure, databases, and cloud services. Published CVE author with findings reported to Anthropic, MongoDB, ClickHouse, Zomato, and others.</p>
     <div class="hero-meta">
+      <div><span class="n">20+</span><span class="l">VULNERABILITIES DISCOVERED</span></div>
       <div><span class="n">1</span><span class="l">CVE PUBLISHED</span></div>
-      <div><span class="n">6+</span><span class="l">FINDINGS DOCUMENTED</span></div>
-      <div><span class="n">M.Sc</span><span class="l">CYBERSECURITY (IN PROGRESS)</span></div>
+      <div><span class="n">M.Sc</span><span class="l">CYBERSECURITY</span></div>
     </div>
   </div>
 </div>
@@ -152,6 +141,10 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     <div class="s-head"><span class="s-num">01</span><span class="s-title">Vulnerability Research</span></div>
     <p class="s-sub">Each case below links directly to its full technical write-up — root cause, proof of concept, and evidence.</p>
 
+    <div class="count-strip">
+      <b>20+</b> vulnerabilities discovered across HackerOne and Bugcrowd programs — the cases below are a selection of the publicly write-up'd findings.
+    </div>
+
     <a class="cve-featured" href="https://github.com/Ahmedhassanelf/CVE-2026-123010-Security-Researcher-Ahmed-Hassan-Elfekiry" target="_blank" rel="noopener">
       <div class="cve-stamp">MITRE ASSIGNED</div>
       <div class="cve-id">CVE-2026-123010</div>
@@ -161,14 +154,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/-RCE-on-Anthrobic-Asking-Claude-for-a-Git-Diff-Can-Run-Any-Program-on-Your-Machin" target="_blank" rel="noopener">
-      <div class="case-tab high"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">Anthropic — Silent RCE via Claude Code Git Auto-Approval</div>
             <div class="case-target">TARGET: CLAUDE CODE 2.1.310 · WEAKNESS: RCE</div>
           </div>
-          <span class="case-sev high">HIGH · 8.7</span>
+          <span class="case-sev">HIGH · 8.7</span>
         </div>
         <p class="case-desc">Repository-controlled <code>.git/config</code> keys (diff.external, textconv, core.fsmonitor, core.sshCommand) execute arbitrary programs the moment Claude runs a "read-only" git command — no permission prompt shown.</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -176,14 +169,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/anthropic-sandbox-runtime-ca-key-leak-README.md" target="_blank" rel="noopener">
-      <div class="case-tab critical"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">Anthropic — MITM CA Private Key Exposure in sandbox-runtime</div>
             <div class="case-target">TARGET: SANDBOX-RUNTIME v0.0.81 · WEAKNESS: CWE-200/522</div>
           </div>
-          <span class="case-sev critical">CRITICAL · 9.2</span>
+          <span class="case-sev">CRITICAL · 9.2</span>
         </div>
         <p class="case-desc">The sandbox's child-readable trust bundle copies the full CA PEM — private key included — letting a sandboxed process extract the MITM signing key even under active denyRead restrictions.</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -191,14 +184,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/-Internal-MongoDB-Grafana-Instance-Exposed-to-the-Public-Internet-No-Authentication-Required" target="_blank" rel="noopener">
-      <div class="case-tab high"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">MongoDB — Unauthenticated Internal Grafana Exposure (Voyage AI)</div>
             <div class="case-target">TARGET: TRAININGINFRA.VOYAGEAI.COM · WEAKNESS: CWE-200/400</div>
           </div>
-          <span class="case-sev high">INFO DISCLOSURE</span>
+          <span class="case-sev">INFO DISCLOSURE</span>
         </div>
         <p class="case-desc">An internal Grafana instance for AI training infrastructure serves full operational telemetry — auth volumes, API route maps, alerting config — to the open internet with zero authentication.</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -206,14 +199,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/-Your-Cloud-Storage-Isn-t-Yours-Cross-Tenant-S3-Data-Leak-in-ClickHouse" target="_blank" rel="noopener">
-      <div class="case-tab high"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">ClickHouse — Cross-Tenant S3 Data Leak via Iceberg Metadata</div>
             <div class="case-target">TARGET: CLICKHOUSE ICEBERGS3 · WEAKNESS: BROKEN ACCESS CONTROL</div>
           </div>
-          <span class="case-sev high">BAC / IDOR</span>
+          <span class="case-sev">BAC / IDOR</span>
         </div>
         <p class="case-desc">A filtered <code>READ ON S3</code> grant is checked once against the initial URI only — a crafted Iceberg metadata file lets a restricted tenant read any other tenant's bucket.</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -221,14 +214,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/DOR-on-Seller-Onboarding-Write-Path-Allows-Takeover-of-Another-Seller-s-Banking-Compliance-Data" target="_blank" rel="noopener">
-      <div class="case-tab critical"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">Zomato / Hyperpure — IDOR on Seller Onboarding Write Path</div>
             <div class="case-target">TARGET: PRODHPADMIN.ZOMANS.COM · WEAKNESS: CWE-639</div>
           </div>
-          <span class="case-sev critical">CRITICAL · 9.6</span>
+          <span class="case-sev">CRITICAL · 9.6</span>
         </div>
         <p class="case-desc">A sequential, unchecked <code>flow_id</code> on the onboarding write endpoint lets any seller mutate another seller's record — including banking and compliance fields (PAN, GST).</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -236,14 +229,14 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
     </a>
 
     <a class="case" href="https://github.com/Ahmedhassanelf/Subdomain-Takeover-Vulnerability-Report" target="_blank" rel="noopener">
-      <div class="case-tab high"></div>
+      <div class="case-tab"></div>
       <div class="case-body">
         <div class="case-top">
           <div>
             <div class="case-title">Credit Karma — Subdomain Takeover via Dangling CNAME</div>
             <div class="case-target">WEAKNESS: DNS / ASSET ENUMERATION</div>
           </div>
-          <span class="case-sev high">BUG BOUNTY</span>
+          <span class="case-sev">BUG BOUNTY</span>
         </div>
         <p class="case-desc">A dangling CNAME pointed to an unclaimed third-party service, allowing full takeover of the subdomain's content.</p>
         <span class="case-arrow">VIEW FULL REPORT →</span>
@@ -263,8 +256,8 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
         <p>Background spans penetration testing, cybersecurity instruction, and IT security operations. Currently pursuing a Master's in Cybersecurity at Helwan University.</p>
       </div>
       <div>
-        <div class="stat"><b>eWAPTX / eJPT</b><span>CERTIFIED</span></div>
-        <div class="stat"><b>OSCP · CPTS</b><span>IN PROGRESS</span></div>
+        <div class="stat"><b>eWAPTX · eJPTv2</b><span>CERTIFIED</span></div>
+        <div class="stat"><b>OSCP · CPTS</b><span>HANDS-ON LABS</span></div>
         <div class="stat"><b>Egypt</b><span>BASED IN</span></div>
       </div>
     </div>
@@ -301,7 +294,7 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
       </div>
     </div>
     <div class="skill-block">
-      <h4>TOOLS</h4>
+      <h4>OFFENSIVE TOOLING</h4>
       <div class="pills">
         <span class="pill">Burp Suite</span><span class="pill">BloodHound</span><span class="pill">Impacket</span>
         <span class="pill">Mimikatz</span><span class="pill">CrackMapExec</span><span class="pill">Hashcat</span>
@@ -309,8 +302,15 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
       </div>
     </div>
     <div class="skill-block">
-      <h4>SCRIPTING</h4>
-      <div class="pills"><span class="pill">Python</span><span class="pill">Bash</span></div>
+      <h4>BLUE TEAM / DEFENSIVE KNOWLEDGE</h4>
+      <div class="pills">
+        <span class="pill">Splunk</span><span class="pill">IDS/IPS</span><span class="pill">EDR/XDR</span>
+        <span class="pill">SOC Operations</span><span class="pill">Log Analysis</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <h4>SCRIPTING & NETWORKING</h4>
+      <div class="pills"><span class="pill">Python</span><span class="pill">Bash</span><span class="pill">TCP/IP</span><span class="pill">Networking (CCNA)</span></div>
     </div>
   </div>
 </section>
@@ -319,12 +319,17 @@ footer{padding:2.5rem 0;text-align:center;font-family:var(--mono);font-size:.68r
 
 <section id="certs">
   <div class="wrap">
-    <div class="s-head"><span class="s-num">05</span><span class="s-title">Certifications</span></div>
-    <div class="grid3">
-      <div class="cert"><b>eWAPTX</b><span>INE Security</span><br><span class="st done">CERTIFIED</span></div>
-      <div class="cert"><b>eJPTv2</b><span>INE Security</span><br><span class="st done">CERTIFIED</span></div>
-      <div class="cert"><b>OSCP</b><span>OffSec</span><br><span class="st ip">IN PROGRESS</span></div>
-      <div class="cert"><b>CPTS</b><span>Hack The Box</span><br><span class="st ip">IN PROGRESS</span></div>
+    <div class="s-head"><span class="s-num">05</span><span class="s-title">Certifications & Courses</span></div>
+    <div class="certs-list">
+      <div class="cert"><b>eWAPTX</b><span>eLearnSecurity Web Application Penetration Tester</span></div>
+      <div class="cert"><b>eJPTv2</b><span>Junior Penetration Tester</span></div>
+      <div class="cert"><b>SOC Fundamentals Certification</b><span>NetRiders</span></div>
+      <div class="cert"><b>SOC Level 1 Path</b><span>TryHackMe</span></div>
+      <div class="cert"><b>CWES</b><span>Web Exploitation Completion Path, Hack The Box</span></div>
+      <div class="cert"><b>CCNA</b><span>Cisco Networking Academy</span></div>
+      <div class="cert"><b>CompTIA A+</b><span>CompTIA</span></div>
+      <div class="cert"><b>OSCP</b><span>OffSec</span></div>
+      <div class="cert"><b>CPTS</b><span>Hack The Box</span></div>
     </div>
   </div>
 </section>
